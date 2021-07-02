@@ -12,6 +12,16 @@ This repository will document and have instructions on how to :
      - Percept Setup instructions will be here.  TBD
 # Stream Analytics
       - Stream Analytics code to parse out JSON and identify X coordinate will be here.
+      
+      - When I first passed all the data from my Percept into PowerBI over streamanalytics I would get "array" instead of the bounding box coordinates.
+      - I then tried the following code in the Stream Analytics query which worked nicely to parse out the individual bounding box coordinate values.
+      ![image](https://user-images.githubusercontent.com/79670628/124305685-6b99f900-db33-11eb-9068-f75fd869f851.png)
+      
+      Plan for this section
+          - Document output in PowerBI, and upload a PBIX file of output example.
+          - Document steps I used and documentation I read to come up with the Stream Analytics query.
+          - Document how to create inputs from IOT HUB and output to PowerBI stream analytics - and some tips to make it work if changes are made to the query.
+
 # PowerBI setup
       - Instructions to connect to PowerBI to monitor data in visuals will be here.
 # PowerApps Setup
