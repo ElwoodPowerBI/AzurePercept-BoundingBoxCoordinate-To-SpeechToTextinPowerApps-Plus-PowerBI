@@ -15,7 +15,23 @@ This repository will document and have instructions on how to :
       
       - When I first passed all the data from my Percept into PowerBI over streamanalytics I would get "array" instead of the bounding box coordinates.
       - I then tried the following code in the Stream Analytics query which worked nicely to parse out the individual bounding box coordinate values.
-      ![image](https://user-images.githubusercontent.com/79670628/124305685-6b99f900-db33-11eb-9068-f75fd869f851.png)
+SELECT
+    Percept.ArrayValue.label,
+    Percept.ArrayValue.confidence,
+    GetArrayElement(Percept.ArrayValue.bbox, 0) AS bbox0,
+    GetArrayElement(Percept.ArrayValue.bbox, 1) AS bbox1,
+    GetArrayElement(Percept.ArrayValue.bbox, 2) AS bbox2,
+    GetArrayElement(Percept.ArrayValue.bbox, 3) AS bbox3,
+    Percept.ArrayValue.bbox,
+CAST (udf.main(Percept.ArrayValue.timestamp) as DateTime) as DETECTION_TIMESTAMP,
+    Percept.ArrayValue.timestamp
+INTO
+    "PowerBI Report Name"
+FROM
+    "IOTHUB connection" as event
+    CROSS APPLY GetArrayElements(event.Neural_Network) AS Percept
+WHERE
+    CAST(Percept.ArrayValue.confidence as Float) > 0.6
       
       Plan for this section
           - Document output in PowerBI, and upload a PBIX file of output example.
