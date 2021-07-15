@@ -1,5 +1,13 @@
 # AzurePercept-BoundingBoxCoordinate-To-SpeechToTextinPowerApps-Plus-PowerBI
 Using the Camera/Vision module, extracting the X coordinate for the bounding box, sending over Stream Analytics to chart in PowerBI, and then sending to PowerApps to connect with TextToSpeech to play audio
+
+## I now plan on using this process and code to :
+### Run an Azure Percept in ArtPrize GrandRapids for this project.  
+This project will recognize ballet steps, convert to a mapped emotion and then display that as abstract digital art. 
+https://www.artprize.org/70976
+### Run an Azure Percept for the SuperHeroes Foundation in Puerto Rico to help children create their own sign language
+link TBD
+
 # Overview
 This repository will document and have instructions on how to :
      - Use the Azure Percept Dev Kit to detect and draw a bounding box around a person
@@ -8,13 +16,19 @@ This repository will document and have instructions on how to :
      - Create a PowerApp that plays back audio to read back Microsoft Translater API call to read back x coordinate.
      - Map x coordinates to music notes 
 # Azure Percept Dev Kit
-     - https://azure.microsoft.com/en-us/services/azure-percept/
-     - Percept Setup instructions will be here.  TBD
+- https://azure.microsoft.com/en-us/services/azure-percept/
+- Percept Setup instructions will be here.  TBD
+
+# Events to Storage Queue
+- Instead of using Strem Analytics, I will be creating a parallel route using Events to Storage Queue to Logic Apps.
+
 # Stream Analytics
-      - Stream Analytics code to parse out JSON and identify X coordinate will be here.
+- Stream Analytics code to parse out JSON and identify X coordinate will be here.
       
-      - When I first passed all the data from my Percept into PowerBI over streamanalytics I would get "array" instead of the bounding box coordinates.
-      - I then tried the following code in the Stream Analytics query which worked nicely to parse out the individual bounding box coordinate values.
+- When I first passed all the data from my Percept into PowerBI over streamanalytics I would get "array" instead of the bounding box coordinates.
+- I then tried the following code in the Stream Analytics query which worked nicely to parse out the individual bounding box coordinate values.
+
+```
 SELECT
     Percept.ArrayValue.label,
     Percept.ArrayValue.confidence,
@@ -32,16 +46,18 @@ FROM
     CROSS APPLY GetArrayElements(event.Neural_Network) AS Percept
 WHERE
     CAST(Percept.ArrayValue.confidence as Float) > 0.6
-      
-      Plan for this section
-          - Document output in PowerBI, and upload a PBIX file of output example.
-          - Document steps I used and documentation I read to come up with the Stream Analytics query.
-          - Document how to create inputs from IOT HUB and output to PowerBI stream analytics - and some tips to make it work if changes are made to the query.
+```  
+
+Plan for this section
+- Document output in PowerBI, and upload a PBIX file of output example.
+- Document steps I used and documentation I read to come up with the Stream Analytics query.
+- Document how to create inputs from IOT HUB and output to PowerBI stream analytics - and some tips to make it work if changes are made to the query.
 
 # PowerBI setup
-      - Instructions to connect to PowerBI to monitor data in visuals will be here.
+Instructions to connect to PowerBI to monitor data in visuals will be here.
+
 # PowerApps Setup
-      - Instructions to setup PowerApps and connect to Microsoft Translator Speech to Text will be here.
+Instructions to setup PowerApps and connect to Microsoft Translator Speech to Text will be here.
 
 # A fun adventure!!
-    - I will update daily as I learn more 😁
+I will update daily as I learn more 😁
