@@ -24,6 +24,8 @@ This repository will document and have instructions on how to :
 
 # Stream Analytics
 - Stream Analytics code to parse out JSON and identify X coordinate will be here.
+
+## Stream Anlytics Query 
       
 - When I first passed all the data from my Percept into PowerBI over streamanalytics I would get "array" instead of the bounding box coordinates.
 - I then tried the following code in the Stream Analytics query which worked nicely to parse out the individual bounding box coordinate values.
@@ -47,6 +49,25 @@ FROM
 WHERE
     CAST(Percept.ArrayValue.confidence as Float) > 0.6
 ```  
+
+## Stream Analytics Add Function (User Defined Function or UDF)
+
+Here is the code that is used to convert the time date stamp into something usable.
+Anybody now how to convert it into your timezone?
+
+```
+function main(nanoseconds) {
+
+    var epoch = nanoseconds * 0.000000001;
+
+    var d = new Date(0);
+
+    d.setUTCSeconds(epoch);
+
+    return (d.toISOString());
+
+}
+```
 
 Plan for this section
 - Document output in PowerBI, and upload a PBIX file of output example.
