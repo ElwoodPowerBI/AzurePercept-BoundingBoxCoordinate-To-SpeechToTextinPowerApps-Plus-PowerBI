@@ -1,6 +1,9 @@
 # AzurePercept-BoundingBoxCoordinate-To-SpeechToTextinPowerApps-Plus-PowerBI
 Using the Camera/Vision module, extracting the X coordinate for the bounding box, sending over Stream Analytics to chart in PowerBI, and then sending to PowerApps to connect with TextToSpeech to play audio
 
+# Architecture
+![image](https://user-images.githubusercontent.com/79670628/126335307-5dec7208-e4f4-42ca-9318-6bf55318f978.png)
+
 ## I now plan on using this process and code to :
 ### Run an Azure Percept in ArtPrize GrandRapids for this project.  
 This project will recognize ballet steps, convert to a mapped emotion and then display that as abstract digital art. 
