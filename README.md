@@ -23,7 +23,17 @@ This repository will document and have instructions on how to :
 - Percept Setup instructions will be here.  TBD
 
 # Events to Storage Queue
-- Instead of using Strem Analytics, I will be creating a parallel route using Events to Storage Queue to Logic Apps.
+- In a parallel path to Stream Analytics, I will be creating a parallel route using Events to Storage Queue to Logic Apps.
+
+I was able to :
+1) feed IoT Hub messages into a storage queue
+2) pull each message and parse out the "label" from the JSON packet
+3) Push the "label" back onto the queue (may need to put this on a seperate que)
+4) delete message from the original queue.
+- However, all the transactions and the large number of messages put me over my spending limit.  
+Plan : I am looking at adding Stream Analytics on the Edge device to reduce the number of messages before they get to a queue or blob storage.
+
+![image](https://user-images.githubusercontent.com/79670628/126335781-4fb92995-d798-450f-941e-9008893079b4.png)
 
 # Stream Analytics
 - Stream Analytics code to parse out JSON and identify X coordinate will be here.
